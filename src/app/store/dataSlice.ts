@@ -5,7 +5,7 @@ type FetchItemsArgs = {
   theme: string;
 };
 
-export type Item = {
+export type ItemType = {
   id: string;
   title: string;
   descr: string;
@@ -19,7 +19,7 @@ enum Status {
 }
 
 interface DataState {
-  items: Item[];
+  items: ItemType[];
   status: Status;
 }
 
@@ -28,10 +28,12 @@ const initialState: DataState = {
   status: Status.LOADING, //   loading | success | error
 };
 
-export const fetchItems = createAsyncThunk<Item[], FetchItemsArgs>(
+export const fetchItems = createAsyncThunk<ItemType[], FetchItemsArgs>(
   'item/fetchItemStatus',
   async () => {
-    const response = await axios.get<Item[]>(`https://6367d292d1d09a8fa61b5b19.mockapi.io/data`);
+    const response = await axios.get<ItemType[]>(
+      `https://6367d292d1d09a8fa61b5b19.mockapi.io/data`,
+    );
     return response.data;
   },
 );

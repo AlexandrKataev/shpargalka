@@ -6,13 +6,15 @@ import { useAppDispatch, useAppSelector } from '../shared/hooks';
 import { fetchItems } from './store/dataSlice';
 import { selectItemsData } from './store/selectors';
 
+import { ItemType } from './store/dataSlice';
+
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const [activeCopy, setActiveCopy] = useState('');
   const [activeMenu, setActiveMenu] = useState('');
   const [activeMenu2, setActiveMenu2] = useState('');
   const [searchValue, setSearchValue] = useState('');
-  const filters = ['Типы данных', 'Числа', 'Строки', 'Массивы', 'Объекты', 'Циклы'];
+
   const items = useAppSelector(selectItemsData);
   // const items1 = items;
   // const items2 = items;
@@ -26,8 +28,10 @@ const App: React.FC = () => {
   // })
   // .map((obj) => <PizzaBlock key={obj.id} {...obj} />);
   const itemBlocks = items
-    .filter((el) => {
+    .filter((el: ItemType) => {
       if (el.title.toLowerCase().includes(searchValue.toLowerCase()) && activeMenu2 === '') {
+        return true;
+      } else if (el.descr.toLowerCase().includes(searchValue.toLowerCase()) && activeMenu2 === '') {
         return true;
       } else if (
         el.title.toLowerCase().includes(searchValue.toLowerCase()) &&
@@ -45,8 +49,7 @@ const App: React.FC = () => {
     .map((el) => <Item key={el.title} {...el} />);
 
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const enteredName = event.target.value;
-    setSearchValue(enteredName);
+    setSearchValue(event.target.value);
   };
 
   const getItems = async () => {
@@ -140,12 +143,26 @@ const App: React.FC = () => {
         </div>
       </div>
       <div className={s.container}>
-        <h1>{filters[3]}</h1>
-        <input className={s.search} type="text" value={searchValue} onChange={inputHandler} />
-        <div className={s.item_container}>
-          {/* <h2>Добавление/удаление элементов массива</h2> */}
-          {itemBlocks}
+        <div className={s.search_body}>
+          <input
+            className={s.search}
+            type="text"
+            placeholder="Поиск"
+            value={searchValue}
+            onChange={inputHandler}
+          />
+          {searchValue && (
+            <svg
+              onClick={() => setSearchValue('')}
+              className={s.close}
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
+            </svg>
+          )}
         </div>
+
+        <div className={s.item_container}>{itemBlocks}</div>
       </div>
     </div>
   );

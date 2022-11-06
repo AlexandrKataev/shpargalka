@@ -13,7 +13,9 @@ img {
 .main {
   display: flex;
 }
-
+.search_body {
+  position: relative;
+}
 .search {
   // cursor: pointer;
   display: inline-flex;
@@ -29,6 +31,18 @@ img {
   // background-color: rgb(87, 87, 87);
   &:hover {
     opacity: 0.8;
+  }
+}
+
+.close {
+  cursor: pointer;
+  position: absolute;
+  opacity: 0.3;
+  top: 18px;
+  right: 20px;
+  width: 12px;
+  &:hover {
+    opacity: 0.5;
   }
 }
 
