@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/shpargalka/static/css/main.3270bddf.css",
-    "main.js": "/shpargalka/static/js/main.907efc7a.js",
+    "main.css": "/shpargalka/static/css/main.d8236a46.css",
+    "main.js": "/shpargalka/static/js/main.e924b519.js",
     "static/media/copy.png": "/shpargalka/static/media/copy.2f255caf554a88f9861f.png",
     "index.html": "/shpargalka/index.html",
-    "main.3270bddf.css.map": "/shpargalka/static/css/main.3270bddf.css.map",
-    "main.907efc7a.js.map": "/shpargalka/static/js/main.907efc7a.js.map"
+    "main.d8236a46.css.map": "/shpargalka/static/css/main.d8236a46.css.map",
+    "main.e924b519.js.map": "/shpargalka/static/js/main.e924b519.js.map"
   },
   "entrypoints": [
-    "static/css/main.3270bddf.css",
-    "static/js/main.907efc7a.js"
+    "static/css/main.d8236a46.css",
+    "static/js/main.e924b519.js"
   ]
 }
