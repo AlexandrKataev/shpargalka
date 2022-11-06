@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './App.module.scss';
-import copy from '../assets/copy.png';
-import { items } from '../data/jsData';
+// import { items } from '../data/jsData';
 import Item from '../components/Item/Item';
+import { useAppDispatch, useAppSelector } from '../shared/hooks';
+import { fetchItems } from './store/dataSlice';
+import { selectItemsData } from './store/selectors';
 
 const App: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [activeCopy, setActiveCopy] = useState('');
   const [activeMenu, setActiveMenu] = useState('');
   const [activeMenu2, setActiveMenu2] = useState('');
   const [searchValue, setSearchValue] = useState('');
   const filters = ['Типы данных', 'Числа', 'Строки', 'Массивы', 'Объекты', 'Циклы'];
-
+  const items = useAppSelector(selectItemsData);
   // const items1 = items;
   // const items2 = items;
 
@@ -22,17 +25,38 @@ const App: React.FC = () => {
   // 	return false;
   // })
   // .map((obj) => <PizzaBlock key={obj.id} {...obj} />);
-  const itemBlocks = items.map((el) => <Item key={el.header} {...el} />);
-
-  const onCopyClick = async () => {
-    await navigator.clipboard.writeText(activeCopy);
-    // alert('Text copied');
-  };
+  const itemBlocks = items
+    .filter((el) => {
+      if (el.title.toLowerCase().includes(searchValue.toLowerCase()) && activeMenu2 === '') {
+        return true;
+      } else if (
+        el.title.toLowerCase().includes(searchValue.toLowerCase()) &&
+        activeMenu2 === el.theme
+      ) {
+        return true;
+      } else if (
+        el.descr.toLowerCase().includes(searchValue.toLowerCase()) &&
+        activeMenu2 === el.theme
+      ) {
+        return true;
+      }
+      return false;
+    })
+    .map((el) => <Item key={el.title} {...el} />);
 
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const enteredName = event.target.value;
     setSearchValue(enteredName);
   };
+
+  const getItems = async () => {
+    dispatch(fetchItems({ theme: 'massive' }));
+    window.scrollTo(0, 0);
+  };
+
+  useEffect(() => {
+    getItems();
+  }, []);
 
   return (
     <div className={s.main}>
@@ -75,8 +99,8 @@ const App: React.FC = () => {
       </div>
       <div className={s.menu_container}>
         <div
-          className={activeMenu2 === 'Все' ? s.menu2_item : s.menu2_item_inactive}
-          onClick={() => setActiveMenu2('Все')}>
+          className={activeMenu2 === '' ? s.menu2_item : s.menu2_item_inactive}
+          onClick={() => setActiveMenu2('')}>
           Все
         </div>
         <div
@@ -85,8 +109,8 @@ const App: React.FC = () => {
           Числа
         </div>
         <div
-          className={activeMenu2 === 'Строки' ? s.menu2_item : s.menu2_item_inactive}
-          onClick={() => setActiveMenu2('Строки')}>
+          className={activeMenu2 === 'string' ? s.menu2_item : s.menu2_item_inactive}
+          onClick={() => setActiveMenu2('string')}>
           Строки
         </div>
         <div
@@ -95,8 +119,8 @@ const App: React.FC = () => {
           Объекты
         </div>
         <div
-          className={activeMenu2 === 'Массивы' ? s.menu2_item : s.menu2_item_inactive}
-          onClick={() => setActiveMenu2('Массивы')}>
+          className={activeMenu2 === 'massive' ? s.menu2_item : s.menu2_item_inactive}
+          onClick={() => setActiveMenu2('massive')}>
           Массивы
         </div>
         <div
