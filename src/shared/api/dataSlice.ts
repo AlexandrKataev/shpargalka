@@ -1,42 +1,11 @@
-import axios from 'axios';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
-type FetchItemsArgs = {
-  theme: string;
-};
-
-export type ItemType = {
-  id: string;
-  title: string;
-  descr: string;
-  theme: string;
-};
-
-enum Status {
-  LOADING = 'loading',
-  SUCCESS = 'success',
-  ERROR = 'error',
-}
-
-interface DataState {
-  items: ItemType[];
-  status: Status;
-}
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchItems } from './api';
+import { DataState, Status } from './types';
 
 const initialState: DataState = {
   items: [],
   status: Status.LOADING, //   loading | success | error
 };
-
-export const fetchItems = createAsyncThunk<ItemType[], FetchItemsArgs>(
-  'item/fetchItemStatus',
-  async () => {
-    const response = await axios.get<ItemType[]>(
-      `https://6367d292d1d09a8fa61b5b19.mockapi.io/data`,
-    );
-    return response.data;
-  },
-);
 
 const dataSlice = createSlice({
   name: 'data',

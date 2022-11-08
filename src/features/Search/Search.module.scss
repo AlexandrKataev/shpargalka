@@ -1,0 +1,33 @@
+.search_body {
+  position: relative;
+}
+.search {
+  // cursor: pointer;
+
+  display: inline-flex;
+  justify-content: center;
+  margin: 3px 5px;
+  width: 300px;
+  padding: 11px 20px;
+  border: 1px solid rgb(211, 211, 211);
+  border-radius: 20px;
+  color: rgb(165, 165, 165);
+  font-size: 13px;
+
+  // background-color: rgb(87, 87, 87);
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.close {
+  cursor: pointer;
+  position: absolute;
+  opacity: 0.3;
+  top: 18px;
+  right: 20px;
+  width: 12px;
+  &:hover {
+    opacity: 0.5;
+  }
+}
