@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import s from './Filter.module.scss';
 
-import { useAppDispatch, useAppSelector } from '../../shared/hooks';
+import { useAppDispatch, useAppSelector } from 'shared/hooks';
 import { selectActiveFilter, selectFilterItems } from './model/selectors';
 import { setActiveFilter, setFilters } from './model/FilterSlice';
 import { selectActiveLang } from '../Lang/model/selectors';
-import { selectItemsData } from '../../shared/api/selectors';
+import { selectItemsData } from 'shared/api/selectors';
 
 const Filter: React.FC = () => {
   const dispatch = useAppDispatch();

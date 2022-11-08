@@ -1,7 +1,8 @@
 import s from './Item.module.scss';
 
 import { useState } from 'react';
-import Copy from '../../features/Copy/Copy';
+import Copy from 'features/Copy/Copy';
+import { Link } from 'react-router-dom';
 
 type itemProps = {
   title: string;

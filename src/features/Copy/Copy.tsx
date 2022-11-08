@@ -1,5 +1,5 @@
 import s from './Item.module.scss';
-import copy from '../../assets/copy.png';
+import copy from 'assets/copy.png';
 
 type copyProps = { activeCopy: string };
 
