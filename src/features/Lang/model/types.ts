@@ -1,6 +1,6 @@
 export enum LangItems {
   JS = 'JS',
-  JS_BROUSER = 'JS Browser',
+  JS_BROUSER = 'JS DOM',
   HTML = 'HTML',
   CSS = 'CSS',
   REACT = 'React',
