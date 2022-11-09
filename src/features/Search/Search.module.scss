@@ -1,5 +1,6 @@
 .search_body {
   position: relative;
+  margin-left: 15px;
 }
 .search {
   // cursor: pointer;
@@ -10,9 +11,9 @@
   width: 300px;
   padding: 11px 20px;
   border: 1px solid rgb(211, 211, 211);
-  border-radius: 20px;
-  color: rgb(165, 165, 165);
-  font-size: 13px;
+  border-radius: 10px;
+  color: rgb(71, 71, 71);
+  font-size: 14px;
 
   // background-color: rgb(87, 87, 87);
   &:hover {

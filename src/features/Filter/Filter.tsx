@@ -27,18 +27,18 @@ const Filter: React.FC = () => {
   }, [data, activeLang]);
 
   return (
-    <>
+    <div className={s.container}>
       {filterItems.map((el) => {
         return (
           <div
             key={el}
-            className={activeFilter === el ? s.menu2_item : s.menu2_item_inactive}
+            className={activeFilter === el ? s.item_active : s.item}
             onClick={() => dispatch(setActiveFilter(el))}>
             {el}
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 

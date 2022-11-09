@@ -2,7 +2,7 @@ import s from './Item.module.scss';
 
 import { useState } from 'react';
 import Copy from 'features/Copy/Copy';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 type itemProps = {
   title: string;
@@ -11,15 +11,20 @@ type itemProps = {
 
 const Item: React.FC<itemProps> = ({ title, descr }) => {
   const [activeCopy, setActiveCopy] = useState('');
+  const [onMouseCopy, setOnMouseCopy] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div
       className={s.item}
       onMouseOver={() => setActiveCopy(title)}
-      onMouseOut={() => setActiveCopy('')}>
+      onMouseOut={() => setActiveCopy('')}
+      onClick={() => !onMouseCopy && navigate(`/item/${title}`)}>
       <h3>
         {title}
-        {activeCopy === title && <Copy activeCopy={activeCopy} />}
+        <span onMouseOver={() => setOnMouseCopy(true)} onMouseOut={() => setOnMouseCopy(false)}>
+          {activeCopy === title && <Copy activeCopy={activeCopy} />}
+        </span>
       </h3>
 
       <div className={s.item_description}>{descr}</div>

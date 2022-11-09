@@ -18,18 +18,18 @@ const Lang: React.FC = () => {
   };
 
   return (
-    <>
+    <div className={s.container}>
       {langItems.map((el) => {
         return (
           <div
             key={el}
-            className={activeLang === el ? s.menu_item : s.menu_item_inactive}
+            className={activeLang === el ? s.item_active : s.item}
             onClick={() => onClickLang(el)}>
-            {el}
+            <div>{el}</div>
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 
