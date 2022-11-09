@@ -10,10 +10,19 @@
   grid-column-gap: 15px;
 }
 
+.title {
+  grid-area: t;
+  padding: 15px;
+  margin-left: 50px;
+  background-color: rgb(233, 233, 233);
+  display: flex;
+  align-items: center;
+}
+
 .content {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 40px;
   border-radius: 10px;
   width: 850px;
   min-height: 100vh;
@@ -21,16 +30,7 @@
   background-color: rgb(255, 255, 255);
 }
 
-.title {
-  grid-area: t;
-  padding: 15px;
-  margin-left: 25px;
-  background-color: rgb(233, 233, 233);
-  display: flex;
-  align-items: center;
-}
-
 h2 {
   align-self: center;
-  margin: 10px;
+  margin: 0px 0 20px 0;
 }

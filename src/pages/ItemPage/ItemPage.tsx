@@ -1,8 +1,13 @@
+import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import s from './ItemPage.module.scss';
 
 const ItemPage: React.FC = () => {
   const currentItem = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className={s.main}>
@@ -10,7 +15,7 @@ const ItemPage: React.FC = () => {
         {'<'}
       </Link>
       <div className={s.content}>
-        <div>{currentItem.title}</div>
+        <h3 className={s.title}>{currentItem.title}</h3>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, fugiat molestias illum
         excepturi aut libero rem et debitis eius velit, molestiae possimus non dolorum nihil est
         consequatur? Harum, ex voluptatibus!Lorem ipsum dolor sit amet consectetur, adipisicing

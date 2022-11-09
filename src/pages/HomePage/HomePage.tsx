@@ -23,7 +23,7 @@ const HomePage: React.FC = () => {
   const items = useAppSelector(selectItemsData);
 
   const itemBlocks = items
-    .filter((el: ItemType) => {
+    .filter((el) => {
       if (
         el.title.toLowerCase().includes(searchValue.toLowerCase()) &&
         activeFilter === 'Все' &&
@@ -52,6 +52,10 @@ const HomePage: React.FC = () => {
       return false;
     })
     .map((el) => <Item key={el.title} {...el} />);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className={s.main}>
